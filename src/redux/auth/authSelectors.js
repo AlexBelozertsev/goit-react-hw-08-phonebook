@@ -1,4 +1,7 @@
-const getIsAuthenticated = state => Boolean(state.auth.token);
-const getUsername = state => state.auth.user.name;
+import { string } from 'prop-types';
 
-export default { getIsAuthenticated, getUsername };
+const getIsAuthenticated = state => state.auth.isAuthenticated;
+const getUsername = state => state.auth.user.name;
+const getUserEmail = state => state.auth.user.email;
+
+export default { getIsAuthenticated, getUsername, getUserEmail };

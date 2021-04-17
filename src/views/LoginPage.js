@@ -34,6 +34,7 @@ class LoginView extends Component {
               type={'email'}
               name={'email'}
               value={email}
+              placeholder={'your@mail.com'}
               onChange={this.handleChange}
             />
           </Label>
@@ -43,6 +44,7 @@ class LoginView extends Component {
               type={'password'}
               name={'password'}
               value={password}
+              placeholder={'*******'}
               onChange={this.handleChange}
             />
           </Label>

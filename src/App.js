@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Layout from './components/Layout';
-import HomePage from './views/HomePage';
-import RegisterPage from './views/RegisterPage';
-import LoginPage from './views/LoginPage';
-import ContactsPage from './views/ContactsPage';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 import { authOperations } from './redux/auth';
+
+const HomePage = lazy(() => import('./views/HomePage'));
+const ContactsPage = lazy(() => import('./views/ContactsPage'));
+const RegisterPage = lazy(() => import('./views/RegisterPage'));
+const LoginPage = lazy(() => import('./views/LoginPage'));
 
 class App extends Component {
   componentDidMount() {
@@ -18,15 +22,35 @@ class App extends Component {
     return (
       <Layout>
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/contacts" component={ContactsPage} />
+          <Suspense fallback={<p>Load...</p>}>
+            <PublicRoute exact path="/" component={HomePage} />
+            <PublicRoute
+              path="/register"
+              restricted
+              component={RegisterPage}
+              redirectTo="/contacts"
+            />
+            <PublicRoute
+              path="/login"
+              restricted
+              component={LoginPage}
+              redirectTo="/contacts"
+            />
+            <PrivateRoute
+              path="/contacts"
+              component={ContactsPage}
+              redirectTo="/login"
+            />
+          </Suspense>
         </Switch>
       </Layout>
     );
   }
 }
+
+App.propTypes = {
+  onGetCurrentUser: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = {
   onGetCurrentUser: authOperations.getCurrentUser,

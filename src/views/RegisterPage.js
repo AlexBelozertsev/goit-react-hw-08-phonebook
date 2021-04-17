@@ -28,13 +28,14 @@ class RegisterView extends Component {
     const { name, email, password } = this.state;
     return (
       <div>
-        <Title text={'Registration Page'} />
+        <Title text={'Registration'} />
         <Form onSubmit={this.handleSubmit} autoComplete={'off'}>
-          <Label name={'Name'}>
+          <Label name={'Name:'}>
             <Input
               type={'text'}
               name={'name'}
               value={name}
+              placeholder={'Your Name'}
               onChange={this.handleChange}
             />
           </Label>
@@ -44,6 +45,7 @@ class RegisterView extends Component {
               type={'email'}
               name={'email'}
               value={email}
+              placeholder={'your@mail.com'}
               onChange={this.handleChange}
             />
           </Label>
@@ -53,6 +55,7 @@ class RegisterView extends Component {
               type={'password'}
               name={'password'}
               value={password}
+              placeholder={'*******'}
               onChange={this.handleChange}
             />
           </Label>
