@@ -86,7 +86,7 @@ AddContactForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  contacts: selectors.getContactsNames(state),
+  contactsName: selectors.getContactsNames(state),
 });
 
 const mapDispatchToProps = dispatch => ({

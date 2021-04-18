@@ -48,8 +48,8 @@ const deleteContact = Id => async dispatch => {
 const editContact = ({ id, contact }) => async dispatch => {
   dispatch(editContactRequest());
   try {
-    await axios.patch(`/contacts/${id}`, contact);
-    dispatch(editContactSuccess(id));
+    const { data } = await axios.patch(`/contacts/${id}`, contact);
+    dispatch(editContactSuccess(data));
   } catch (error) {
     dispatch(editContactError(error));
   }

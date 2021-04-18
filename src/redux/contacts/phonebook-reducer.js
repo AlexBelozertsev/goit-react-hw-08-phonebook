@@ -22,11 +22,7 @@ const itemReducer = createReducer([], {
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
   [editContactSuccess]: (state, { payload }) =>
-    state.map(contact => {
-      console.log(contact);
-      console.log(payload);
-      return contact.id === payload.id ? payload : contact;
-    }),
+    state.map(contact => (contact.id === payload.id ? payload : contact)),
 });
 
 const loading = createReducer(false, {

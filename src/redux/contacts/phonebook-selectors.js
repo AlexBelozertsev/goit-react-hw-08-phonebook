@@ -11,6 +11,14 @@ const getContactsNames = state => {
   }, []);
 };
 
+const getContactsNumbers = state => {
+  const allContacts = getAllContacts(state);
+  return allContacts.reduce((arr, contact) => {
+    arr.push(contact.number);
+    return arr;
+  }, []);
+};
+
 const filteredContacts = createSelector(
   [getAllContacts, getFilter],
   (contacts, filter) => {
@@ -39,4 +47,5 @@ export default {
   getVisibleContacts,
   getFilteredContact,
   getContactsNames,
+  getContactsNumbers,
 };
