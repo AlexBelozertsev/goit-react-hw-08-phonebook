@@ -9,6 +9,9 @@ import {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
+  editContactRequest,
+  editContactSuccess,
+  editContactError,
 } from './phonebook-actions';
 
 const getContacts = () => async dispatch => {
@@ -42,4 +45,14 @@ const deleteContact = Id => async dispatch => {
   }
 };
 
-export default { getContacts, addContact, deleteContact };
+const editContact = ({ id, contact }) => async dispatch => {
+  dispatch(editContactRequest());
+  try {
+    await axios.patch(`/contacts/${id}`, contact);
+    dispatch(editContactSuccess(id));
+  } catch (error) {
+    dispatch(editContactError(error));
+  }
+};
+
+export default { getContacts, addContact, deleteContact, editContact };

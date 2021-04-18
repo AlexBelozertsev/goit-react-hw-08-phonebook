@@ -11,6 +11,9 @@ import {
   deleteContactSuccess,
   deleteContactError,
   changeFilter,
+  editContactRequest,
+  editContactSuccess,
+  editContactError,
 } from './phonebook-actions';
 
 const itemReducer = createReducer([], {
@@ -18,6 +21,12 @@ const itemReducer = createReducer([], {
   [addContactSuccess]: (state, { payload }) => [...state, payload],
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
+  [editContactSuccess]: (state, { payload }) =>
+    state.map(contact => {
+      console.log(contact);
+      console.log(payload);
+      return contact.id === payload.id ? payload : contact;
+    }),
 });
 
 const loading = createReducer(false, {
@@ -30,6 +39,9 @@ const loading = createReducer(false, {
   [deleteContactRequest]: () => true,
   [deleteContactSuccess]: () => false,
   [deleteContactError]: () => false,
+  [editContactRequest]: () => true,
+  [editContactSuccess]: () => false,
+  [editContactError]: () => false,
 });
 
 const filterReduser = createReducer('', {

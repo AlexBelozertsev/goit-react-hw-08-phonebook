@@ -13,6 +13,7 @@ const Contacts = ({ list, onDeliteContact }) => {
           list.map(({ id, name, number }) => (
             <li key={id} className={style.contactItem}>
               <Contact
+                id={id}
                 name={name}
                 number={number}
                 onDeliteContact={() => onDeliteContact(id)}
