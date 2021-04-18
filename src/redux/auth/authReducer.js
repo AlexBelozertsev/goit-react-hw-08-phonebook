@@ -19,8 +19,12 @@ const token = createReducer(null, {
 });
 
 const error = createReducer(null, {
-  [authActions.registerError]: setError,
-  [authActions.loginError]: setError,
+  [authActions.registerError]: (_, { payload }) => {
+    alert('E-MAIL already taken or your PASSWORD is too short');
+  },
+  [authActions.loginError]: (_, { payload }) => {
+    alert('E-MAIL or PASSWORD is incorrect');
+  },
   [authActions.logoutError]: setError,
   [authActions.getCurrentUserError]: setError,
 });

@@ -11,7 +11,10 @@ const HomePage = ({ isAuthenticated, userName }) => {
       {isAuthenticated ? (
         <Title text={`Welcome, ${userName}!`} />
       ) : (
-        <Title text={`Welcome, guest!`} />
+        <>
+          <Title text={`Welcome, guest!`} />
+          <p>You should Register or Login to use the App</p>
+        </>
       )}
     </>
   );

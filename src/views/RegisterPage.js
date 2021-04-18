@@ -60,7 +60,7 @@ class RegisterView extends Component {
               type={'password'}
               name={'password'}
               value={password}
-              placeholder={'*******'}
+              placeholder={'More than 6 symbols'}
               onChange={this.handleChange}
             />
           </Label>
