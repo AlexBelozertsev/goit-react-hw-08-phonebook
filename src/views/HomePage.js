@@ -8,7 +8,11 @@ const HomePage = ({ isAuthenticated, userName }) => {
     <>
       <Title text={'Phonebook'} />
       <span>Save your contacts</span>
-      {isAuthenticated && <Title text={`Welcome, ${userName}!`} />}
+      {isAuthenticated ? (
+        <Title text={`Welcome, ${userName}!`} />
+      ) : (
+        <Title text={`Welcome, guest!`} />
+      )}
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { connect } from 'react-redux';
-import { Switch } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Layout from './components/Layout';
@@ -23,7 +23,7 @@ class App extends Component {
       <Layout>
         <Switch>
           <Suspense fallback={<p>Load...</p>}>
-            <PublicRoute exact path="/" component={HomePage} />
+            <PublicRoute path="/" exact component={HomePage} />
             <PublicRoute
               path="/register"
               restricted
@@ -41,6 +41,7 @@ class App extends Component {
               component={ContactsPage}
               redirectTo="/login"
             />
+            <Redirect to="/" />
           </Suspense>
         </Switch>
       </Layout>
