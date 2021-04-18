@@ -20,6 +20,11 @@ class RegisterView extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { name, email, password } = this.state;
+    if (!name || !email || !password) {
+      alert('Some areas are empty!');
+      return;
+    }
     this.props.onRegister(this.state);
     this.setState({ name: '', email: '', password: '' });
   };

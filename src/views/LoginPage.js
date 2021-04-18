@@ -19,6 +19,10 @@ class LoginView extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    if (!this.state.email || !this.state.password) {
+      alert('Fill In all areas');
+      return;
+    }
     this.props.onLogin(this.state);
     this.setState({ name: '', email: '', password: '' });
   };
